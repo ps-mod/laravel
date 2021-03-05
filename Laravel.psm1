@@ -9,6 +9,9 @@ function test  {
         $param
     )
     if(!$innerFunc){
+        vendor/bin/phpunit
+    }
+    elseif (($innerFunc -eq 'cover') -or ($innerFunc -eq 'c')) {
         vendor/bin/phpunit --coverage-html tests/Coverage
         Start-Process './tests/Coverage/index.html'
     }
@@ -81,7 +84,7 @@ function lumen {
             ValueFromRemainingArguments=$true,
             Position = 1
         )][string[]]
-        $params
+        $params,
     )
     $ErrorActionPreference = "Inquire"
     $Global:LumenAPI_ENV = Import-Env "$PSScriptRoot\lumen.env"

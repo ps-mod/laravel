@@ -4,7 +4,7 @@ This is a helper function collection for Laravel and Lumen frameworks
 # Configuration
 This package uses the `lumen.env` file for configuration. It resides in the package folder. (`C:\tools\ps-mod\Laravel` by default) You can access it with the command `lumen conf`.
 > Note: When configuring SQL_ADMIN you can also specify executable location
-
+---
 # Commands
 ## admin
 Opens the default database admin GUI
@@ -13,7 +13,7 @@ Opens the default database admin GUI
 ```ps
 lumen admin
 ```
-
+---
 ## conf
 Opens the configuration file for the script collection.
 
@@ -21,7 +21,7 @@ Opens the configuration file for the script collection.
 ```ps
 lumen conf
 ```
-
+---
 ## compose
 Runs the following commands:
 - composer install
@@ -35,7 +35,7 @@ Usefull when you start developing for the day.
 ```ps
 lumen compose
 ```
-
+---
 ## db:fresh
 Drops all migration and reruns all. Equivalent to `php artisan migrate:fresh`
 
@@ -43,7 +43,7 @@ Drops all migration and reruns all. Equivalent to `php artisan migrate:fresh`
 ```ps
 lumen db:fresh
 ```
-
+---
 ## db:refresh / db
 Drops all migration, reruns all, then runs DatabaseSeeder. Equivalent to `php artisan migrate:fresh --seed`
 
@@ -53,7 +53,7 @@ lumen db:refresh
 # or:
 lumen db
 ```
-
+---
 ## compile / c
 Recompiles scss, sass and js files. Equivalent to `yarn run development`
 
@@ -63,7 +63,7 @@ lumen compile
 # or:
 lumen c
 ```
-
+---
 ## coverage
 Opens test coverage report
 
@@ -71,7 +71,7 @@ Opens test coverage report
 ```ps
 lumen coverage
 ```
-
+---
 ## vhosts
 Opens apache `httpd-vhosts.conf` file.
 
@@ -79,7 +79,7 @@ Opens apache `httpd-vhosts.conf` file.
 ```ps
 lumen vhosts
 ```
-
+---
 ## vhosts register / vhosts reg
 Registers the current app as a vhost
 
@@ -89,7 +89,7 @@ lumen vhosts register
 # or:
 lumen vhosts reg
 ```
-
+---
 ## hosts
 Opens the `C:\Windows\System32\drivers\etc\hosts` file.
 
@@ -97,7 +97,7 @@ Opens the `C:\Windows\System32\drivers\etc\hosts` file.
 ```ps
 lumen hosts
 ```
-
+---
 ## hosts register / hosts reg
 Registers the current app as a DNS address
 
@@ -107,15 +107,25 @@ lumen hosts register
 # or:
 lumen hosts reg
 ```
-
+---
 ## test
-Runs PHP Unit and Feature tests and creates a coverage report in html format.
+Runs php Unit and Feature tests.
 
 ### Usage
 ```ps
 lumen test
 ```
+---
+## test cover / test c
+Runs PHP Unit and Feature tests and creates a coverage report in html format.
 
+### Usage
+```ps
+lumen test cover
+# or:
+lumen test c
+```
+---
 ## test include
 Includes a specific file or directory in test coverage report
 
@@ -129,7 +139,7 @@ lumen test include <Path>
 lumen test include MyDirectory
 lumen test include MyFile
 ```
-
+---
 ## test ignore
 Excludes a specific file or directory from test coverage report
 
