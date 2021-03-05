@@ -1,6 +1,12 @@
 # About PS-Mod: Laravel
 This is a helper function collection for Laravel and Lumen frameworks
 
+# Installation
+Use this command to install Laravel package:
+```ps
+psmod require Laravel
+```
+
 # Configuration
 This package uses the `lumen.env` file for configuration. It resides in the package folder. (`C:\tools\ps-mod\Laravel` by default) You can access it with the command `lumen conf`.
 > Note: When configuring SQL_ADMIN you can also specify executable location
