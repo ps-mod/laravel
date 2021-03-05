@@ -84,7 +84,7 @@ function lumen {
             ValueFromRemainingArguments=$true,
             Position = 1
         )][string[]]
-        $params,
+        $params
     )
     $ErrorActionPreference = "Inquire"
     $Global:LumenAPI_ENV = Import-Env "$PSScriptRoot\lumen.env"
