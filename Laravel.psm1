@@ -151,7 +151,7 @@ function lumen {
         if($hash.DB_PASSWORD){
             $arguments = ("-u "+ $hash.DB_USERNAME, "-p " + $hash.DB_PASSWORD ,"--database " + $hash.DB_DATABASE)
         }
-        Start-Process $Global:LumenAPI_ENV.SQL -ArgumentList ("-u "+ $hash.DB_USERNAME, "--database " + $hash.DB_DATABASE) -NoNewWindow -Wait
+        Start-Process $Global:LumenAPI_ENV.SQL -ArgumentList ("-u "+ $hash.DB_USERNAME, $arguments) -NoNewWindow -Wait
     }
     else {
         $a = $PsBoundParameters.Values + $args
