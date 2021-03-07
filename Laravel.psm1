@@ -35,20 +35,8 @@ function lumen {
             Start-Process ".\tests\Coverage\index.html"
             break
         }
-        'test'{
+        {$_ -in ('test', 'vhosts', 'hosts', 'sql')} {
             Run-Script "Laravel/functions/$innerFunction" $params
-            break
-        }
-        'vhosts'{
-            Run-Script "Laravel/functions/$innerFunction" $params
-            break
-        }
-        'hosts'{
-            Run-Script "Laravel/functions/$innerFunction" $params
-            break
-        }
-        'sql'{
-            Run-Script "Laravel/functions/$innerFunction" $globalEnv.HOSTS $params
             break
         }
         {$_ -in ('db:refresh', 'db')} {
