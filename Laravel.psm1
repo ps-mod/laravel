@@ -35,7 +35,7 @@ function lumen {
             Start-Process ".\tests\Coverage\index.html"
             break
         }
-        {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug')} {
+        {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre')} {
             Run-Script "Laravel/functions/$innerFunction" $params
             break
         }
