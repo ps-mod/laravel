@@ -21,6 +21,12 @@ function lumen {
             break
         }
         'compose' {
+            if(!(Test-Path '.env')){
+                Copy-Item '.env.example' '.env'
+                Write-Host 'Configuration not found (``.env`` file). Creating from ``.env.example``.'
+                Write-Host "Please ensure you already have a database with the name configured in ``.env`` before continue."
+                Read-Host -promt "Press ENTER to continue"
+            }
             composer install
             php artisan key:generate
             yarn
