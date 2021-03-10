@@ -22,6 +22,7 @@ function lumen {
         }
         'compose' {
             composer install
+            php artisan key:generate
             yarn
             php artisan migrate:fresh --seed
             yarn run development
@@ -34,6 +35,22 @@ function lumen {
         'coverage'{
             Start-Process ".\tests\Coverage\index.html"
             break
+        }
+        'model'{
+            Import-Module "$Global:rootFolder/Laravel/functions/ModelGeneration.psm1"
+            New-LumenModel($params)
+            Remove-Module 'ModelGeneration'
+        }
+        'clear'{
+            php artisan cache:clear
+            php artisan config:clear
+            php artisan route:clear
+            Get-ChildItem -Path  './storage/framework/views' -Recurse -exclude '*.gitignore' |
+            Select -ExpandProperty FullName |
+            Where {$_ -notlike '*.gitignore'} |
+            sort length -Descending |
+            Remove-Item -force 
+            Write-Host "View cache cleared!" -foreground green
         }
         {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre')} {
             Run-Script "Laravel/functions/$innerFunction" $params
