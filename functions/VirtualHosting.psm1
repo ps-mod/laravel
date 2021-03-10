@@ -22,10 +22,11 @@ function Add-Vhosts {
 }
 
 function Add-Hosts {
-    $content = "`n" +
-            '127.0.0.1 '+ (Get-ServerName)
+    $content = "`n" + '127.0.0.1 '+ (Get-ServerName)
     $globalEnv = Import-Env "$Global:rootFolder\Laravel\lumen.env"
-    Add-Content -Path $globalEnv.HOSTS -Value $content
+    $content | clip
+    Write-Host "Please add this to your hosts file: ``$content``. Copied to clipboard"
+    code $globalEnv.HOSTS
 }
 
 Export-ModuleMember -Function Get-ServerName, Add-Vhosts, Add-Hosts

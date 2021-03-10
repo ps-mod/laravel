@@ -21,17 +21,25 @@ function lumen {
             break
         }
         'compose' {
+            $dusk = $false
             if(!(Test-Path '.env')){
                 Copy-Item '.env.example' '.env'
                 Write-Host 'Configuration not found (``.env`` file). Creating from ``.env.example``.'
                 Write-Host "Please ensure you already have a database with the name configured in ``.env`` before continue."
-                Read-Host -promt "Press ENTER to continue"
+                Read-Host "Press ENTER to continue"
+                $dusk = $True
+                
             }
             composer install
             php artisan key:generate
             yarn
             php artisan migrate:fresh --seed
             yarn run development
+            if($dusk){
+                php artisan dusk:install
+                lumen vhosts reg
+                lumen hosts reg
+            }
             break
         }
         'db:fresh' {
@@ -43,9 +51,7 @@ function lumen {
             break
         }
         'model'{
-            Import-Module "$Global:rootFolder/Laravel/functions/ModelGeneration.psm1"
-            New-LumenModel($params)
-            Remove-Module 'ModelGeneration'
+            php artisan make:model $params -a -r
         }
         'clear'{
             php artisan cache:clear
