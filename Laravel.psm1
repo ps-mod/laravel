@@ -64,7 +64,7 @@ function lumen {
             Remove-Item -force 
             Write-Host "View cache cleared!" -foreground green
         }
-        {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre')} {
+        {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre', 'api')} {
             Run-Script "Laravel/functions/$innerFunction" $params
             break
         }
