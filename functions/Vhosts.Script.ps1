@@ -5,9 +5,12 @@ if($args.Length -gt 0){
         Remove-Module VirtualHosting
     }else{
         $globalEnv = Import-Env "$Global:rootFolder\Laravel\lumen.env"
-        code $globalEnv.VHOSTS
+        $command = ($globalEnv.CODE + " " + $globalEnv.VHOSTS)
+        Invoke-Expression $command
     }
 }else{
     $globalEnv = Import-Env "$Global:rootFolder\Laravel\lumen.env"
-    code $globalEnv.VHOSTS
+    $command = ($globalEnv.CODE + " " + $globalEnv.VHOSTS)
+    Invoke-Expression $command
+    # code $globalEnv.VHOSTS
 }
