@@ -26,7 +26,8 @@ function Add-Hosts {
     $globalEnv = Import-Env "$Global:rootFolder\Laravel\lumen.env"
     $content | clip
     Write-Host "Please add this to your hosts file: ``$content``. Copied to clipboard"
-    code $globalEnv.HOSTS
+    $command = ($globalEnv.CODE + " " + $globalEnv.HOSTS)
+    Invoke-Expression $command
 }
 
 Export-ModuleMember -Function Get-ServerName, Add-Vhosts, Add-Hosts
