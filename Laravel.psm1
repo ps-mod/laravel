@@ -51,7 +51,9 @@ function lumen {
             break
         }
         'model'{
-            php artisan make:model $params -a -r
+            $fixed = ([string]$params).substring(0,1).toupper()+([string]$params).substring(1).tolower()
+            php artisan make:model $fixed -a -r
+            php artisan make:request ${fixed}Request
         }
         'clear'{
             php artisan cache:clear
