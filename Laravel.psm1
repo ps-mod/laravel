@@ -31,6 +31,9 @@ function lumen {
                 
             }
             composer install
+            if($IsLinux){
+                sudo chmod -R 777 storage/
+            }
             php artisan key:generate
             yarn
             php artisan migrate:fresh --seed

@@ -35,6 +35,7 @@ function doInit{
     # rm -r --Force ./.git
     $appName = Read-Host "What will be the name of your app?"
     ((Get-Content -path $envExample -Raw) -replace 'My App',$appName) | Set-Content -Path $envExample
+    envReplace "App url" 'myapp' 'APP_URL=http://myapp.test'
     envReplace "Database Name" 'myapp' 'DB_DATABASE=myapp'
     envReplace "Database User" 'root' 'DB_USERNAME=root'
     $password = ($v = Read-Host "Database Password (default: empty)") ? $v : ''
@@ -50,7 +51,7 @@ function doInit{
         git add ./README.md
         git commit -m "Initial Commit"
     }
-    # lumen compose
+    lumen compose
 }
 
 doInit($args[0])
