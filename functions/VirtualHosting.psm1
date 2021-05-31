@@ -17,8 +17,17 @@ function Add-Vhosts {
             Allow from all
         </Directory>
     </VirtualHost>'
-    $globalEnv = Import-Env "$Global:rootFolder\Laravel\lumen.env"
-    Add-Content -Path $globalEnv.VHOSTS -Value $content
+    $globalEnv = Import-Env "$Global:rootFolder/Laravel/lumen.env"
+
+    try {
+        Add-Content -Path (Resolve-Path -Path $globalEnv.VHOSTS) -Value $content -ErrorAction Stop
+    }
+    catch {
+        if($IsLinux){
+            $vh = $globalEnv.VHOSTS
+            sudo pwsh -Command "Add-Content -Path (Resolve-Path -Path '$vh') -Value '$content'"
+        }
+    }
 }
 
 function Add-Hosts {
