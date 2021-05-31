@@ -12,12 +12,12 @@ function lumen {
 
     switch($innerFunction){
         'admin'{
-            $globalEnv = Import-Env "$Global:rootFolder\Laravel\lumen.env"
+            $globalEnv = Import-Env "$Global:rootFolder/Laravel/lumen.env"
             Start-Process -FilePath $globalEnv.SQL_ADMIN
             break
         }
         'conf'{
-            code "$Global:rootFolder\Laravel\lumen.env"
+            code "$Global:rootFolder/Laravel/lumen.env"
             break
         }
         'compose' {
@@ -36,7 +36,6 @@ function lumen {
             php artisan migrate:fresh --seed
             yarn run development
             if($dusk){
-                php artisan dusk:install
                 lumen vhosts reg
                 lumen hosts reg
             }
@@ -66,7 +65,7 @@ function lumen {
             Remove-Item -force 
             Write-Host "View cache cleared!" -foreground green
         }
-        {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre', 'api')} {
+        {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre', 'api', 'init')} {
             Run-Script "Laravel/functions/$innerFunction" $params
             break
         }
