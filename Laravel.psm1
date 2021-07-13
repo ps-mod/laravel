@@ -44,6 +44,11 @@ function lumen {
             }
             break
         }
+        'repack' {
+            Remove-Item -r -Force ./node_modules
+            Remove-Item -r -Force ./vendor
+            lumen compose
+        }
         'db:fresh' {
             php artisan migrate:fresh
             break
