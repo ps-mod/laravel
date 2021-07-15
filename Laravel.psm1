@@ -63,7 +63,7 @@ function lumen {
             php artisan make:request ${fixed}Request
         }
         'watch'{
-            yarn run dev
+            yarn run watch
         }
         'clear'{
             php artisan cache:clear
