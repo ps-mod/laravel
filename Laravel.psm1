@@ -62,13 +62,16 @@ function lumen {
             php artisan make:model $fixed -a -r
             php artisan make:request ${fixed}Request
         }
+        'watch'{
+            yarn run dev
+        }
         'clear'{
             php artisan cache:clear
             php artisan config:clear
             php artisan route:clear
             Get-ChildItem -Path  './storage/framework/views' -Recurse -exclude '*.gitignore' |
-            Select -ExpandProperty FullName |
-            Where {$_ -notlike '*.gitignore'} |
+            Select-Object -ExpandProperty FullName |
+            Where-Object {$_ -notlike '*.gitignore'} |
             sort length -Descending |
             Remove-Item -force 
             Write-Host "View cache cleared!" -foreground green
