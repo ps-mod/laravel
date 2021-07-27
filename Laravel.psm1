@@ -30,6 +30,17 @@ function lumen {
                 $dusk = $True
                 
             }
+            if(Test-Path 'before_compose.ps1'){
+                if($IsLinux){
+                    Start-Process pwsh -ArgumentList './before_compose.ps1' -NoNewWindow -Wait
+                }
+                elseif ($IsLinux -eq $false) {
+                    Start-Process pwsh -ArgumentList './before_compose.ps1' -NoNewWindow -Wait
+                }
+                else {
+                    Start-Process powershell -ArgumentList './before_compose.ps1' -NoNewWindow -Wait
+                }
+            }
             composer install
             if($IsLinux){
                 sudo chmod -R 777 storage/
@@ -41,6 +52,17 @@ function lumen {
             if($dusk){
                 lumen vhosts reg
                 lumen hosts reg
+            }
+            if(Test-Path 'after_compose.ps1'){
+                if($IsLinux){
+                    Start-Process pwsh -ArgumentList './after_compose.ps1' -NoNewWindow -Wait
+                }
+                elseif ($IsLinux -eq $false) {
+                    Start-Process pwsh -ArgumentList './after_compose.ps1' -NoNewWindow -Wait
+                }
+                else {
+                    Start-Process powershell -ArgumentList './after_compose.ps1' -NoNewWindow -Wait
+                }
             }
             break
         }
