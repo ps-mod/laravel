@@ -99,7 +99,7 @@ function lumen {
             Write-Host "View cache cleared!" -foreground green
         }
         {$_ -in ('test', 'vhosts', 'hosts', 'sql', 'git-log', 'xdebug', 'pre', 'api', 'init')} {
-            Run-Script "Laravel/functions/$innerFunction" $params
+            Invoke-Script "Laravel/functions/$innerFunction" $params
             break
         }
         {$_ -in ('db:refresh', 'db')} {
